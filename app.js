@@ -4,6 +4,8 @@ const bodyparser = require("body-parser");
 
 const app = express();
 
+app.use(bodyparser.urlencoded({extended:true}));
+
 app.use(express.static('public'));
 
 app.get("/",(req,res)=>{
@@ -11,7 +13,10 @@ app.get("/",(req,res)=>{
 });
 
 app.post("/",(req,res)=>{
-    res.sendFile(__dirname+"/failure.html");
+    let emailAddress = req.body.email;
+    let familyName = req.body.familyName;
+    let name = req.body.name;
+    console.log(emailAddress + familyName + name);
 });
 
 app.listen(3000,()=>{
